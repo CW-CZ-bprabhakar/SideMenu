@@ -751,8 +751,15 @@ extension SideMenuController: UIGestureRecognizerDelegate {
         }
 
         // If the view is scrollable in horizon direction, don't receive the touch
-        if let scrollView = touch.view as? UIScrollView, scrollView.frame.width > scrollView.contentSize.width {
-            return false
+       
+        if let scrollView = touch.view as? UIScrollView {
+//            , scrollView.frame.width > (scrollView.contentSize.width + 1)
+            let frameWidth: Int = Int(scrollView.frame.width)
+            let contentSizeWidth: Int = Int(scrollView.contentSize.width)
+            if frameWidth > contentSizeWidth {
+                return false
+            }
+            
         }
 
         return true
